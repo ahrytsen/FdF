@@ -6,11 +6,11 @@
 /*   By: ahrytsen <ahrytsen@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/13 14:56:03 by ahrytsen          #+#    #+#             */
-/*   Updated: 2018/01/14 13:18:40 by ahrytsen         ###   ########.fr       */
+/*   Updated: 2018/01/14 16:05:00 by ahrytsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <FdF.h>
+#include <fdf.h>
 
 static int	ft_esc(int key)
 {
@@ -26,7 +26,8 @@ static int	ft_save_line(char *line, t_env *env)
 
 	spl = ft_strsplit(line, ' ');
 	i = 0;
-	while (spl[i++]);
+	while (spl[i])
+		i++;
 	!(tmp = malloc(sizeof(int) * i)) ? perror("./fdf") : 0;
 	!tmp ? exit(1) : 0;
 	i = 0;
@@ -62,7 +63,7 @@ static void	ft_read_map(int fd, t_env *env)
 	}
 }
 
-static void	ft_print(t_env	*env, t_list *data)
+static void	ft_print(t_env *env, t_list *data)
 {
 	int		x;
 	int		y;
@@ -95,7 +96,7 @@ int			main(int ac, char **av)
 	int				fd;
 	static t_env	env;
 
-	(ac != 2) ?	exit(ft_printf("usage: ./fdf map\n") > 0) : 0;
+	(ac != 2) ? exit(ft_printf("usage: ./fdf map\n") > 0) : 0;
 	((fd = open(av[1], O_RDONLY)) == -1) ? perror(av[0]) : 0;
 	fd == -1 ? exit(1) : 0;
 	ft_read_map(fd, &env);

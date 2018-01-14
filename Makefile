@@ -6,7 +6,7 @@
 #    By: ahrytsen <ahrytsen@student.unit.ua>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/30 18:43:03 by ahrytsen          #+#    #+#              #
-#    Updated: 2018/01/14 15:48:57 by ahrytsen         ###   ########.fr        #
+#    Updated: 2018/01/14 16:01:12 by ahrytsen         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -18,8 +18,8 @@ SUB_MAKE1	=	./minilibx/
 SUB_MAKE2	=	./libft/
 INC_LIB		=	-L./libft -lftprintf -L./minilibx -lmlx -framework OpenGL		\
 				-framework AppKit
-SRC			=	FdF.c utils.c
-HDR			=	inc/FdF.h
+SRC			=	fdf.c utils.c
+HDR			=	inc/fdf.h
 OBJ			=	$(addprefix $(DIROBJ), $(SRC:.c=.o))
 
 ifdef FLAGS
@@ -38,7 +38,7 @@ RM			=	rm -f
 ECHO		=	echo
 
 
-$(NAME)	:		$(OBJ) $(HDR)
+$(NAME)	:		$(OBJ)
 ifdef SUB_MAKE1
 				@$(MAKE) -C $(SUB_MAKE1) -j3
 endif
@@ -74,5 +74,5 @@ re		:		fclean all
 
 .PHONY	:		all clean re
 
-$(OBJ)	: $(DIROBJ)%.o : $(DIRSRC)%.c
+$(OBJ)	: $(DIROBJ)%.o : $(DIRSRC)%.c $(HDR)
 				@$(CC) $(INCLUDE) $(CFLAGS) -O3 -o $@ -c $<

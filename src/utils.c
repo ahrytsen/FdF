@@ -6,11 +6,11 @@
 /*   By: ahrytsen <ahrytsen@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/13 19:13:36 by ahrytsen          #+#    #+#             */
-/*   Updated: 2018/01/14 13:41:26 by ahrytsen         ###   ########.fr       */
+/*   Updated: 2018/01/14 16:01:40 by ahrytsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <FdF.h>
+#include <fdf.h>
 
 t_point	ft_conv_point(t_point p, t_env *env)
 {

@@ -6,14 +6,14 @@
 /*   By: ahrytsen <ahrytsen@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/13 14:55:43 by ahrytsen          #+#    #+#             */
-/*   Updated: 2018/01/14 14:25:51 by ahrytsen         ###   ########.fr       */
+/*   Updated: 2018/01/14 16:00:55 by ahrytsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include "../minilibx/mlx.h"
+# include <mlx.h>
 # include <libft.h>
 # include <errno.h>
 # include <fcntl.h>
@@ -28,7 +28,7 @@
 # define RAD_X -60.0 * (M_PI / 180.0)
 # define RAD_Y 45.0 * (M_PI / 180.0)
 # define RAD_Z 0.0 * (M_PI / 180.0)
-# define SZ 5
+# define SZ 20
 # define COLOR 0x00FFFFFF
 
 typedef struct	s_point
