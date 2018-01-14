@@ -6,7 +6,7 @@
 /*   By: ahrytsen <ahrytsen@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/13 14:56:03 by ahrytsen          #+#    #+#             */
-/*   Updated: 2018/01/13 22:43:49 by ahrytsen         ###   ########.fr       */
+/*   Updated: 2018/01/14 05:26:22 by ahrytsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,36 +62,29 @@ static void	ft_read_map(int fd, t_env *env)
 	}
 }
 
-static void	ft_print(t_env	*env)
+static void	ft_print(t_env	*env, t_list *data)
 {
-	t_list	*d;
 	int		x;
 	int		y;
-	t_point	p[2];
 
-	y = 0;
-	while (env->data)
+	y = -1;
+	while (data && ++y < env->s_h)
 	{
-		x = 0;
-		while (x < env->s_w)
+		x = -1;
+		while (++x < env->s_w)
 		{
-			if (env->next)
-			{
-				p[0] = {x, y, env->data[x]};
-				p[1] = {x, y + 1, env->next->data[x]};
-				ft_draw_line(env, ft_conv_point(p[0]),
-							ft_conv_point(p[1]));
-			}
+			if (data->next)
+				ft_draw_line(env, ft_conv_point((t_point){x, y,
+								((int*)data->content)[x]}),
+							ft_conv_point((t_point){x, (y + 1),
+										((int*)data->next->content)[x]}));
 			if (x + 1 < env->s_w)
-			{
-				p[0] = {x, y, env->data[x]};
-				p[1] = {x, y + 1, env->next->data[x]};
-			ft_draw_line(ft_conv_point({x, y, env->data[j]}),
-							ft_conv_point({x + 1, y, env->nexdata[x + 1]})) : 0;
-			x++;
+				ft_draw_line(env, ft_conv_point((t_point){x, y,
+								((int*)data->content)[x]}),
+							ft_conv_point((t_point){(x + 1), y,
+										((int*)data->content)[x + 1]}));
 		}
-		y++;
-		env->data = env->data->next;
+		data = data->next;
 	}
 }
 
@@ -105,8 +98,8 @@ int			main(int ac, char **av)
 	fd == -1 ? exit(1) : 0;
 	ft_read_map(fd, &env);
 	env.mlx = mlx_init();
-	env.win = mlx_new_window(env.mlx, W_WIDTH, W_HIGHT, "FdF by ahrytsen!");
-	ft_print(&env);
+	env.win = mlx_new_window(env.mlx, W_WIDTH, W_HEIGHT, "FdF by ahrytsen!");
+	ft_print(&env, env.data);
 	mlx_key_hook(env.win, &ft_esc, 0);
 	mlx_hook(env.win, 17, 0, (int (*)())&exit, 0);
 	mlx_loop(env.mlx);

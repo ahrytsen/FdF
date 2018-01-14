@@ -6,14 +6,14 @@
 #    By: ahrytsen <ahrytsen@student.unit.ua>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/30 18:43:03 by ahrytsen          #+#    #+#              #
-#    Updated: 2018/01/13 19:13:48 by ahrytsen         ###   ########.fr        #
+#    Updated: 2018/01/14 04:46:19 by ahrytsen         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME		=	fdf
 DIRSRC		=	./src/
 DIROBJ		=	./obj/
-INCLUDE		=	-I./inc/ -I./libft/ -I/minilibx
+INCLUDE		=	-I./inc/ -I./libft/ -I/minilibx/
 SUB_MAKE1	=	./minilibx/
 SUB_MAKE2	=	./libft/
 INC_LIB		=	-L./libft -lftprintf -L./minilibx -lmlx -framework OpenGL		\

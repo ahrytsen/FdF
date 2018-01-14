@@ -6,7 +6,7 @@
 /*   By: ahrytsen <ahrytsen@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/13 19:13:36 by ahrytsen          #+#    #+#             */
-/*   Updated: 2018/01/13 22:07:20 by ahrytsen         ###   ########.fr       */
+/*   Updated: 2018/01/14 05:21:11 by ahrytsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,28 @@ t_point	ft_conv_point(t_point p)
 	p1.x = p0.x * cos(RAD_Y) - p0.z * sin(RAD_Y);
 	p1.y = p0.y;
 	p1.z = p0.z * cos(RAD_Y) + p0.x * sin(RAD_Y);
-	p2.x = p1.x * cos(RAD_Z) + p1.y * sin(RAD_Z) + W_WIDTH / 2;
-	p2.y = p1.y * cos(RAD_Z) - p1.x * sin(RAD_Z) + W_HEIGHT / 2;
+	p2.x = p1.x * cos(RAD_Z) + p1.y * sin(RAD_Z) + (W_WIDTH / 2.0);
+	p2.y = p1.y * cos(RAD_Z) - p1.x * sin(RAD_Z) + (W_HEIGHT / 2.0);
 	p2.z = p1.z;
 	return (p2);
 }
 
-void	ft_draw_line(t_point p1, t_point p2)
+void	ft_draw_line(t_env *env, t_point p0, t_point p1)
 {
+	double	t;
 	double	k;
+	int		x;
+	int		y;
 
-	k = MOD(p1.x - p2.x) > MOD(p1.y - p2.y) ?
-		while ()
+	t = 0.0;
+	k = 1.0 / sqrt((pow((p1.x - p0.x), 2) + pow((p1.y - p0.y), 2)));
+	x = p0.x;
+	y = p0.y;
+	while (t <= 1.0)
+	{
+		mlx_pixel_put(env->mlx, env->win, x, y, 0x00FFFFFF);
+		x = p0.x + (p1.x - p0.x)*t;
+		y = p0.y + (p1.y - p0.x)*t;
+		t += k;
+	}
 }

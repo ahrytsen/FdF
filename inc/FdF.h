@@ -6,14 +6,14 @@
 /*   By: ahrytsen <ahrytsen@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/13 14:55:43 by ahrytsen          #+#    #+#             */
-/*   Updated: 2018/01/13 22:04:20 by ahrytsen         ###   ########.fr       */
+/*   Updated: 2018/01/14 04:48:30 by ahrytsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include <mlx.h>
+# include "../minilibx/mlx.h"
 # include <libft.h>
 # include <errno.h>
 # include <fcntl.h>
@@ -46,6 +46,6 @@ typedef struct	s_env
 }				t_env;
 
 t_point			ft_conv_point(t_point p);
-void			ft_draw_line(t_point p1, t_point p2);
+void			ft_draw_line(t_env *env, t_point p0, t_point p1);
 
 #endif
