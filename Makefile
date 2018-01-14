@@ -6,7 +6,7 @@
 #    By: ahrytsen <ahrytsen@student.unit.ua>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/30 18:43:03 by ahrytsen          #+#    #+#              #
-#    Updated: 2018/01/14 15:43:59 by ahrytsen         ###   ########.fr        #
+#    Updated: 2018/01/14 15:48:57 by ahrytsen         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -40,10 +40,10 @@ ECHO		=	echo
 
 $(NAME)	:		$(OBJ) $(HDR)
 ifdef SUB_MAKE1
-				@(cd $(SUB_MAKE1) && $(MAKE) -j3)
+				@$(MAKE) -C $(SUB_MAKE1) -j3
 endif
 ifdef SUB_MAKE2
-				@(cd $(SUB_MAKE2) && $(MAKE) -j3)
+				@$(MAKE) -C $(SUB_MAKE2) -j3
 endif
 				@$(CC) $(INCLUDE) $(INC_LIB) $(CFLAGS) -O3 -o $(NAME) $(OBJ)
 				@$(ECHO) "\033[31m> \033[32mFdF: Compiled\033[0m"
@@ -51,10 +51,10 @@ endif
 clean	:
 				@($(RM) $(OBJ))
 ifdef SUB_MAKE1
-				@(cd $(SUB_MAKE1) && $(MAKE) clean)
+				@$(MAKE) -C $(SUB_MAKE1) clean
 endif
 ifdef SUB_MAKE2
-				@(cd $(SUB_MAKE2) && $(MAKE) clean)
+				@$(MAKE) -C $(SUB_MAKE2) clean
 endif
 				@$(ECHO) "\033[31m> \033[33mFdF: Directory cleaned\033[0m"
 
@@ -62,10 +62,10 @@ all		:		$(NAME)
 
 fclean	:		clean
 ifdef SUB_MAKE1
-				@(cd $(SUB_MAKE1) && $(MAKE) fclean)
+				@$(MAKE) -C $(SUB_MAKE1) fclean
 endif
 ifdef SUB_MAKE2
-				@(cd $(SUB_MAKE2) && $(MAKE) fclean)
+				@$(MAKE) -C $(SUB_MAKE2) fclean
 endif
 				-@$(RM) $(NAME)
 				@$(ECHO) "\033[31m> \033[33mFdF: Remove executable\033[0m"
