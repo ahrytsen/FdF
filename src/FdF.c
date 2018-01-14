@@ -6,7 +6,7 @@
 /*   By: ahrytsen <ahrytsen@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/13 14:56:03 by ahrytsen          #+#    #+#             */
-/*   Updated: 2018/01/14 05:26:22 by ahrytsen         ###   ########.fr       */
+/*   Updated: 2018/01/14 13:18:40 by ahrytsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,15 +74,17 @@ static void	ft_print(t_env	*env, t_list *data)
 		while (++x < env->s_w)
 		{
 			if (data->next)
-				ft_draw_line(env, ft_conv_point((t_point){x, y,
-								((int*)data->content)[x]}),
-							ft_conv_point((t_point){x, (y + 1),
-										((int*)data->next->content)[x]}));
+				ft_draw_line(env, ft_conv_point((t_point){x * SZ, y * SZ,
+								((int*)data->content)[x] * (SZ / 2)}, env),
+							ft_conv_point((t_point){x * SZ, (y + 1) * SZ,
+										((int*)data->next->content)[x]
+										* (SZ / 2)}, env));
 			if (x + 1 < env->s_w)
-				ft_draw_line(env, ft_conv_point((t_point){x, y,
-								((int*)data->content)[x]}),
-							ft_conv_point((t_point){(x + 1), y,
-										((int*)data->content)[x + 1]}));
+				ft_draw_line(env, ft_conv_point((t_point){x * SZ, y * SZ,
+								((int*)data->content)[x] * (SZ / 2)}, env),
+							ft_conv_point((t_point){(x + 1) * SZ, y * SZ,
+										((int*)data->content)[x + 1]
+										* (SZ / 2)}, env));
 		}
 		data = data->next;
 	}

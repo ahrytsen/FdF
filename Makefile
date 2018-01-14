@@ -6,7 +6,7 @@
 #    By: ahrytsen <ahrytsen@student.unit.ua>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/30 18:43:03 by ahrytsen          #+#    #+#              #
-#    Updated: 2018/01/14 04:46:19 by ahrytsen         ###   ########.fr        #
+#    Updated: 2018/01/14 14:24:31 by ahrytsen         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -19,9 +19,8 @@ SUB_MAKE2	=	./libft/
 INC_LIB		=	-L./libft -lftprintf -L./minilibx -lmlx -framework OpenGL		\
 				-framework AppKit
 SRC			=	FdF.c utils.c
-
-OBJ			=	$(SRC:.c=.o)
-OBJS		=	$(OBJ:%=$(DIROBJ)%)
+HDR			=	inc/FdF.h
+OBJ			=	$(addprefix $(DIROBJ), $(SRC:.c=.o))
 
 ifdef FLAGS
 	ifeq ($(FLAGS), no)
@@ -39,14 +38,14 @@ RM			=	rm -f
 ECHO		=	echo
 
 
-$(NAME)	:		$(OBJ)
+$(NAME)	:		$(OBJ) $(HDR)
 ifdef SUB_MAKE1
 				@(cd $(SUB_MAKE1) && $(MAKE))
 endif
 ifdef SUB_MAKE2
 				@(cd $(SUB_MAKE2) && $(MAKE) -j3)
 endif
-				@$(CC) $(INCLUDE) $(INC_LIB) $(CFLAGS) -O3 -o $(NAME) $(OBJS)
+				@$(CC) $(INCLUDE) $(INC_LIB) $(CFLAGS) -O3 -o $(NAME) $(OBJ)
 				@$(ECHO) "\033[31m> \033[32mFdF: Compiled\033[0m"
 
 clean	:
@@ -75,5 +74,5 @@ re		:		fclean all
 
 .PHONY	:		all clean re
 
-%.o		:		$(DIRSRC)/%.c
+$(OBJ)	: $(DIROBJ)%.o : $(DIRSRC)%.c
 				@$(CC) $(INCLUDE) $(CFLAGS) -O3 -o $(DIROBJ)/$@ -c $<

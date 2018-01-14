@@ -6,7 +6,7 @@
 /*   By: ahrytsen <ahrytsen@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/13 14:55:43 by ahrytsen          #+#    #+#             */
-/*   Updated: 2018/01/14 04:48:30 by ahrytsen         ###   ########.fr       */
+/*   Updated: 2018/01/14 14:25:51 by ahrytsen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,14 @@
 # include <stdio.h>
 # include <math.h>
 
-# define W_WIDTH 1600
-# define W_HEIGHT 1200
+# define W_WIDTH 1000
+# define W_HEIGHT 800
 # define ESC 53
-# define RAD_X 45.0 * (M_PI / 180.0)
-# define RAD_Y -45.0 * (M_PI / 180.0)
-# define RAD_Z -60.0 * (M_PI / 180.0)
+# define RAD_X -60.0 * (M_PI / 180.0)
+# define RAD_Y 45.0 * (M_PI / 180.0)
+# define RAD_Z 0.0 * (M_PI / 180.0)
+# define SZ 5
+# define COLOR 0x00FFFFFF
 
 typedef struct	s_point
 {
@@ -45,7 +47,7 @@ typedef struct	s_env
 	t_list	*data;
 }				t_env;
 
-t_point			ft_conv_point(t_point p);
+t_point			ft_conv_point(t_point p, t_env *env);
 void			ft_draw_line(t_env *env, t_point p0, t_point p1);
 
 #endif
